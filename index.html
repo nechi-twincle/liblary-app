@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library App</title>
+
+    <!-- PWA manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- iPhone 用のアイコン設定（任意） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+
+<h1>Library App</h1>
+
+<!-- ISBN 入力 & スキャン -->
+<div>
+    <label>ISBN:</label>
+    <input type="text" id="isbn">
+    <button onclick="startScan()">バーコードスキャン</button>
+    <button onclick="autoFill()">自動入力</button>
+</div>
+
+<!-- タイトル・著者 -->
+<div>
+    <label>タイトル:</label>
+    <input type="text" id="title">
+
+    <label>著者:</label>
+    <input type="text" id="author">
+</div>
+
+<!-- 状態 -->
+<div>
+    <label>状態:</label>
+    <select id="status">
+        <option value="未読">未読</option>
+        <option value="読書中">読書中</option>
+        <option value="読了">読了</option>
+        <option value="貸出中">貸出中</option>
+    </select>
+</div>
+
+<!-- 返却日 -->
+<div>
+    <label>返却日:</label>
+    <input type="date" id="due_date">
+</div>
+
+<!-- 保存ボタン -->
+<button onclick="saveBook()">保存</button>
+
+<hr>
+
+<!-- 検索 -->
+<input type="text" id="search" placeholder="検索" oninput="renderBooks()">
+
+<!-- 一覧 -->
+<div id="list"></div>
+
+<!-- カメラ映像（ZXing 用） -->
+<video id="video" width="300" height="200" style="border:1px solid #ccc;"></video>
+
+<!-- ZXing 読み取りライブラリ -->
+<script src="https://unpkg.com/@zxing/library@latest"></script>
+
+<!-- アプリ本体 -->
+<script src="app.js"></script>
+
+</body>
+</html>
